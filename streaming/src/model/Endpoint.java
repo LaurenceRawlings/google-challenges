@@ -1,11 +1,13 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Endpoint implements Comparable<Endpoint> {
     private int dcLatency;
     private Map<Cache, Integer> caches;
+    private ArrayList<Request> requests;
 
     public int getDcLatency() {
         return dcLatency;
@@ -14,6 +16,7 @@ public class Endpoint implements Comparable<Endpoint> {
     public Endpoint(int dcLatency) {
         this.dcLatency = dcLatency;
         caches = new HashMap<>();
+        requests = new ArrayList<>();
     }
 
     public void addCache(Cache cache, int latency) {
@@ -26,6 +29,6 @@ public class Endpoint implements Comparable<Endpoint> {
 
     @Override
     public int compareTo(Endpoint o) {
-        return 0;
+        return Integer.compare(caches.size(), o.caches.size());
     }
 }

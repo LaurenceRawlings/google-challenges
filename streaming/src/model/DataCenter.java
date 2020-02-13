@@ -10,6 +10,7 @@ public class DataCenter {
     public DataCenter() {
         videos = new ArrayList<>();
         endpoints = new ArrayList<>();
+        caches = new ArrayList<>();
     }
 
     public void addVideo(Video video) {

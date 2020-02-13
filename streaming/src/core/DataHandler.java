@@ -12,9 +12,6 @@ public class DataHandler {
     static ArrayList<Video> allVideos = new ArrayList<Video>();
 
     public static void readData() {
-<<<<<<< HEAD
-
-=======
         try {
             BufferedReader reader = new BufferedReader(new FileReader("./src/me_at_the_zoo.in"));
 
@@ -31,6 +28,5 @@ public class DataHandler {
         } catch (IOException e) {
             e.printStackTrace();
         }
->>>>>>> 4cf33adaf07b36a28204626d27c51c138ec41ceb
     }
 }

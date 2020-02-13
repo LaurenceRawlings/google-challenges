@@ -23,4 +23,16 @@ public class DataCenter {
     public void addCache(Cache cache) {
         caches.add(cache);
     }
+
+    public ArrayList<Video> getVideos() {
+        return videos;
+    }
+
+    public ArrayList<Endpoint> getEndpoints() {
+        return endpoints;
+    }
+
+    public ArrayList<Cache> getCaches() {
+        return caches;
+    }
 }

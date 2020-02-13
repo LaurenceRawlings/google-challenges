@@ -7,9 +7,9 @@ public class Cache {
     private int maxCapacity;
     private int capacity;
 
-    public Cache(ArrayList<Video> videos, int capacity) {
-        this.videos = videos;
-        this.capacity = capacity;
+    public Cache(int maxCapacity) {
+        videos = new ArrayList<>();
+        this.maxCapacity = maxCapacity;
     }
 
     public ArrayList<Video> getVideos() {

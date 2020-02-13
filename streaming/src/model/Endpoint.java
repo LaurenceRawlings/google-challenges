@@ -3,7 +3,7 @@ package model;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Endpoint {
+public class Endpoint implements Comparable<Endpoint> {
     private int dcLatency;
     private Map<Cache, Integer> caches;
 
@@ -22,5 +22,10 @@ public class Endpoint {
 
     public int getCacheLatency(Cache cache) {
         return caches.get(cache);
+    }
+
+    @Override
+    public int compareTo(Endpoint o) {
+        return 0;
     }
 }

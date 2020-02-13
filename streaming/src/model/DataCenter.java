@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class DataCenter {
     private ArrayList<Video> videos;
     private ArrayList<Endpoint> endpoints;
+    private ArrayList<Cache> caches;
 
     public DataCenter() {
         videos = new ArrayList<>();
@@ -17,5 +18,9 @@ public class DataCenter {
 
     public void addEndpoint(Endpoint endpoint) {
         endpoints.add(endpoint);
+    }
+
+    public void addCache(Cache cache) {
+        caches.add(cache);
     }
 }

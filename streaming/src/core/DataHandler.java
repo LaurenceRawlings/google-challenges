@@ -68,4 +68,20 @@ public class DataHandler {
 
         return dataCenter;
     }
+
+    public static void writeData() {
+        int totalCaches = 0;
+        String outputString = "";
+
+        for (int i = 0; i < dataCenter.getCaches().size(); i ++) {
+            if (!(dataCenter.getCaches().get(i).getVideos().size() == 0)) {
+                totalCaches ++;
+                outputString = outputString + '\n' + i;
+
+                for (int j = 0; j < dataCenter.getCaches().get(i).getVideos().size(); j ++) {
+                    //outputString = outputString + " " + dataCenter.
+                }
+            }
+        }
+    }
 }

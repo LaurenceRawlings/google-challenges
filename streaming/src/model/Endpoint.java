@@ -27,6 +27,10 @@ public class Endpoint implements Comparable<Endpoint> {
         return caches.get(cache);
     }
 
+    public void addRequest(Request request) {
+        requests.add(request);
+    }
+
     @Override
     public int compareTo(Endpoint o) {
         return Integer.compare(caches.size(), o.caches.size());

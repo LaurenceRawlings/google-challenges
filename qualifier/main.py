@@ -49,19 +49,19 @@ def calculate(dict):
 
     for library in libraries:
         if (max_score - min_score == 0):
-            a = 100
+            a = 40
         else:
-            a = (library.get('book_score') / (max_score - min_score)) * 100
+            a = (library.get('book_score') / (max_score - min_score)) * 40
 
         if (max_signup - min_signup == 0):
-            b = 100
+            b = 25
         else:
-            b = 100 - ((int(library.get('signup')) / (max_signup - min_signup)) * 100)
+            b = 100 - ((int(library.get('signup')) / (max_signup - min_signup)) * 25)
 
         if (max_scanrate - min_scanrate == 0):
-            c = 100
+            c = 35
         else:
-            c = (int(library.get('scanrate')) / (max_scanrate - min_scanrate)) * 100
+            c = (int(library.get('scanrate')) / (max_scanrate - min_scanrate)) * 35
 
         total_score = (a + b + c) / 3
 

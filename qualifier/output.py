@@ -4,4 +4,23 @@ class Output:
         self.path = path
     
     def __call__(self, libraries):
-        pass
+        f = open(self.path, "w")
+
+        outputText = len(libraries) + '\n'
+
+        for library in libraries :
+            bookQueue = library.get('book_queue')
+            queueLength = len(bookQueue)
+            currentBook = 0
+
+            outputText = outputText + library.get('id') + ' ' + queueLength + '\n'
+            
+            for book in bookQueue :
+                if currentBook < queueLength - 1 :
+                    outputText = outputText + book + ' '
+                    currentBook += 1
+                else :
+                    outputText = outputText + book + '\n'
+
+        f.write(outputText)
+        f.close

@@ -7,7 +7,7 @@ dict = read()
 
 libraries = dict.get('libraries')
 book_scores = dict.get('book_scores')
-days = dict.get('days')
+days = int(dict.get('days'))
 
 print(dict)
 
@@ -53,4 +53,25 @@ for library in libraries:
     library.update( {'total_score' : total_score} )
 
 
-s_libraries = sorted(libraries, key = lambda i:i['total_score'], reverse=True)
+library_queue = sorted(libraries, key = lambda i:i['total_score'], reverse=True)
+
+registered = []
+completed_books = []
+signup_in_progress = False
+signup_timer = 0
+
+for day in range(0, days):
+    if (signup_in_progress == False):
+        if (len(library_queue) > 0):
+            signup_in_progress = True
+            signup_timer = int(library_queue[0].get('signup'))
+
+
+
+    signup_timer -= 1
+    if (signup_timer == 0):
+        signup_in_progress = False
+        registered.append(library_queue[0])
+        library_queue = library_queue[1:]
+
+    

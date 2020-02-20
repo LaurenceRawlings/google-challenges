@@ -6,14 +6,14 @@ class Output:
     def __call__(self, libraries):
         f = open(self.path, 'w')
 
-        outputText = len(libraries) + '\n'
+        outputText = str(len(libraries)) + '\n'
 
         for library in libraries :
             bookQueue = library.get('book_queue')
             queueLength = len(bookQueue)
             currentBook = 0
 
-            outputText = outputText + library.get('id') + ' ' + queueLength + '\n'
+            outputText = outputText + str(library.get('id')) + ' ' + str(queueLength) + '\n'
             
             for book in bookQueue :
                 if currentBook < queueLength - 1 :

@@ -5,33 +5,27 @@ class Reader:
     
     def __call__(self):
         with open(self.path, 'r') as file:
-            lines = file.readlines()
+            lines = file.read().split('\n')
             dict = {
-                'videos': [],
-                'endpoints': [],
-                'requests': [],
-                'caches': [],
-                'cache_max': 0
+                'book_scores': [],
+                'libraries': [],
+                'days': 0
             }
 
             info = lines[0].split(' ')
-            videos = lines[1].split(' ')
-
-            for i in range(0, len(videos)):
-                dict.get('videos').append((i, int(videos[i])))
+            dict.update( {'book_scores' : lines[1].split(' ')} )
+            dict.update( {'days' : info[2]} )
 
             line = 2
-            endpoints = {}
             for i in range(0, int(info[1])):
-                endpoint = lines[line].split(' ')
-                for j in range(0, endpoint[1]):
-                    line += 1
-
-            
-
-
-            
-
-
+                library = lines[line].split(' ')
+                line += 1
+                dict.get('libraries').append( {
+                    'id': i, 
+                    'signup': library[1], 
+                    'scanrate': library[2], 
+                    'books': lines[line].split(' ')
+                    } )
+                line += 1
 
         return dict

@@ -13,7 +13,8 @@ class Output:
             queueLength = len(bookQueue)
             currentBook = 0
 
-            outputText = outputText + str(library.get('id')) + ' ' + str(queueLength) + '\n'
+            if not (queueLength == 0):
+                outputText = outputText + str(library.get('id')) + ' ' + str(queueLength) + '\n'
             
             for book in bookQueue :
                 if currentBook < queueLength - 1 :

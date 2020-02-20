@@ -49,19 +49,19 @@ def calculate(dict):
 
     for library in libraries:
         if (max_score - min_score == 0):
-            a = 40
+            a = 100
         else:
-            a = (library.get('book_score') / (max_score - min_score)) * 40
+            a = (library.get('book_score') / (max_score - min_score))
 
         if (max_signup - min_signup == 0):
-            b = 25
+            b = 100
         else:
-            b = 100 - ((int(library.get('signup')) / (max_signup - min_signup)) * 25)
+            b = 100 - ((int(library.get('signup')) / (max_signup - min_signup)))
 
         if (max_scanrate - min_scanrate == 0):
-            c = 35
+            c = 100
         else:
-            c = (int(library.get('scanrate')) / (max_scanrate - min_scanrate)) * 35
+            c = (int(library.get('scanrate')) / (max_scanrate - min_scanrate))
 
         total_score = (a + b + c) / 3
 
@@ -82,6 +82,7 @@ def calculate(dict):
     signup_timer = 0
 
     for day in range(0, days):
+        print(day)
         if (signup_in_progress == False):
             if (len(library_queue) > 0):
                 signup_in_progress = True
@@ -97,6 +98,7 @@ def calculate(dict):
 
                 scanned = 0
                 while scanned < int(library.get('scanrate')):
+                    yeah = False
                     if (len(books_with_scores) > 0):
                         if not (books_with_scores[0][1] in completed_books):
                             library.get('book_queue').append(books_with_scores[0][1])
@@ -104,8 +106,12 @@ def calculate(dict):
                             scanned += 1
                         library.get('books').remove(books_with_scores[0][1])
                         books_with_scores = books_with_scores[1:]
+
                     else:
-                        scanned = int(library.get('scanrate'))
+                        yeah = True
+                    
+                    if(yeah):
+                        break
                 
         
 
@@ -122,7 +128,7 @@ def calculate(dict):
 print('Start')
 read = r.Reader('input/a_example.txt')
 out = o.Output('output/a_example_out.txt')
-out(calculate(read()))
+#out(calculate(read()))
 print('Finished A')
 
 read = r.Reader('input/b_read_on.txt')

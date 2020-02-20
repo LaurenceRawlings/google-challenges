@@ -15,8 +15,6 @@ def calculate(dict):
 
     days = int(dict.get('days'))
 
-    print(dict)
-
     max_score = 0
     min_score = math.inf
 
@@ -50,9 +48,20 @@ def calculate(dict):
             min_scanrate = int(library.get('scanrate'))
 
     for library in libraries:
-        a = (library.get('book_score') / (max_score - min_score)) * 100
-        b = 100 - ((int(library.get('signup')) / (max_signup - min_signup)) * 100)
-        c = (int(library.get('scanrate')) / (max_scanrate - min_scanrate)) * 100
+        if (max_score - min_score == 0):
+            a = 100
+        else:
+            a = (library.get('book_score') / (max_score - min_score)) * 100
+
+        if (max_signup - min_signup == 0):
+            b = 100
+        else:
+            b = 100 - ((int(library.get('signup')) / (max_signup - min_signup)) * 100)
+
+        if (max_scanrate - min_scanrate == 0):
+            c = 100
+        else:
+            c = (int(library.get('scanrate')) / (max_scanrate - min_scanrate)) * 100
 
         total_score = (a + b + c) / 3
 
@@ -123,7 +132,7 @@ print('Finished B')
 
 read = r.Reader('input/c_incunabula.txt')
 out = o.Output('output/c_incunabula_out.txt')
-out(calculate(read()))
+#out(calculate(read()))
 print('Finished C')
 
 read = r.Reader('input/d_tough_choices.txt')
@@ -133,10 +142,10 @@ print('Finished D')
 
 read = r.Reader('input/e_so_many_books.txt')
 out = o.Output('output/e_so_many_books_out.txt')
-out(calculate(read()))
+#out(calculate(read()))
 print('Finished E')
 
 read = r.Reader('input/f_libraries_of_the_world.txt')
 out = o.Output('output/f_libraries_of_the_world_out.txt')
-out(calculate(read()))
+#out(calculate(read()))
 print('Finished F')

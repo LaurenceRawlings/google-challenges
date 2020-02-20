@@ -4,7 +4,7 @@ class Output:
         self.path = path
     
     def __call__(self, libraries):
-        f = open(self.path, "w")
+        f = open(self.path, 'w')
 
         outputText = len(libraries) + '\n'
 

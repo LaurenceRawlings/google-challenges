@@ -8,7 +8,13 @@ read = r.Reader('input/a_example.txt')
 dict = read()
 
 libraries = dict.get('libraries')
+
 book_scores = dict.get('book_scores')
+temp = []
+for score in book_scores:
+    temp.append(int(score))
+book_scores = temp
+
 days = int(dict.get('days'))
 
 print(dict)
@@ -69,6 +75,11 @@ for day in range(0, days):
             signup_in_progress = True
             signup_timer = int(library_queue[0].get('signup'))
 
+    if (len(registered) > 0):
+        for library in registered:
+            books = library.get('books')
+
+            
     
 
     signup_timer -= 1
@@ -78,3 +89,5 @@ for day in range(0, days):
         library_queue = library_queue[1:]
 
 ### Output ###
+out = o.Output('output/a_example_out.txt')
+out(registered)

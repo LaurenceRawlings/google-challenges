@@ -24,7 +24,8 @@ class Reader:
                     'id': i, 
                     'signup': library[1], 
                     'scanrate': library[2], 
-                    'books': lines[line].split(' ')
+                    'books': lines[line].split(' '),
+                    'book_queue' : []
                     } )
                 line += 1
 

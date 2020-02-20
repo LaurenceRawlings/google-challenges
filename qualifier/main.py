@@ -24,11 +24,16 @@ def calculate(dict):
     max_scanrate = 0
     min_scanrate = math.inf
 
+    sharedBooks = []
+
     for library in libraries:
         books = library.get('books')
         total = 0
         for book in books:
             total += int(book_scores[int(book)])
+            sharedBooks.append(book)
+
+        sharedBooks = list(dict.fromkeys(sharedBooks))
 
         library.update({'book_score' : total} )
 
@@ -48,25 +53,47 @@ def calculate(dict):
             min_scanrate = int(library.get('scanrate'))
 
     for library in libraries:
+        sharedCount = 1
+
         if (max_score - min_score == 0):
             a = 100
         else:
+<<<<<<< HEAD
             a = (library.get('book_score') / (max_score - min_score))
+=======
+            a = (library.get('book_score') / (max_score - min_score)) * 100
+>>>>>>> 34e927b665eb02da2c2b355646f3fda4b15f39af
 
         if (max_signup - min_signup == 0):
             b = 100
         else:
+<<<<<<< HEAD
             b = 100 - ((int(library.get('signup')) / (max_signup - min_signup)))
+=======
+            b = 100 - ((int(library.get('signup')) / (max_signup - min_signup)) * 100)
+>>>>>>> 34e927b665eb02da2c2b355646f3fda4b15f39af
 
         if (max_scanrate - min_scanrate == 0):
             c = 100
         else:
+<<<<<<< HEAD
             c = (int(library.get('scanrate')) / (max_scanrate - min_scanrate))
+=======
+            c = (int(library.get('scanrate')) / (max_scanrate - min_scanrate)) * 100
+>>>>>>> 34e927b665eb02da2c2b355646f3fda4b15f39af
 
         total_score = (a + b + c) / 3
 
-        library.update( {'total_score' : total_score} )
+        #library.update( {'total_score' : total_score} )
 
+        for book in library.get('books') :
+            for sharedBook in sharedBooks :
+                if book == sharedBook :
+                    sharedCount += 1
+
+        total_score = total_score * sharedCount
+
+        library.update( {'total_score' : total_score} )
 
     library_queue = sorted(libraries, key=lambda i:i['total_score'], reverse=True)
 
@@ -133,25 +160,25 @@ print('Finished A')
 
 read = r.Reader('input/b_read_on.txt')
 out = o.Output('output/b_read_on_out.txt')
-#out(calculate(read()))
+out(calculate(read()))
 print('Finished B')
 
 read = r.Reader('input/c_incunabula.txt')
 out = o.Output('output/c_incunabula_out.txt')
-#out(calculate(read()))
+out(calculate(read()))
 print('Finished C')
 
 read = r.Reader('input/d_tough_choices.txt')
 out = o.Output('output/d_tough_choices_out.txt')
-out(calculate(read()))
+#out(calculate(read()))
 print('Finished D')
 
 read = r.Reader('input/e_so_many_books.txt')
 out = o.Output('output/e_so_many_books_out.txt')
-#out(calculate(read()))
+out(calculate(read()))
 print('Finished E')
 
 read = r.Reader('input/f_libraries_of_the_world.txt')
 out = o.Output('output/f_libraries_of_the_world_out.txt')
-#out(calculate(read()))
+out(calculate(read()))
 print('Finished F')

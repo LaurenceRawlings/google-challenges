@@ -1,7 +1,9 @@
 import reader as r
+import output as o
 import numpy as np
 import math
 
+### Input and Process ###
 read = r.Reader('input/a_example.txt')
 dict = read()
 
@@ -53,8 +55,9 @@ for library in libraries:
     library.update( {'total_score' : total_score} )
 
 
-library_queue = sorted(libraries, key = lambda i:i['total_score'], reverse=True)
+library_queue = sorted(libraries, key=lambda i:i['total_score'], reverse=True)
 
+#### Algorithm ###
 registered = []
 completed_books = []
 signup_in_progress = False
@@ -66,7 +69,7 @@ for day in range(0, days):
             signup_in_progress = True
             signup_timer = int(library_queue[0].get('signup'))
 
-
+    
 
     signup_timer -= 1
     if (signup_timer == 0):
@@ -74,4 +77,4 @@ for day in range(0, days):
         registered.append(library_queue[0])
         library_queue = library_queue[1:]
 
-    
+### Output ###

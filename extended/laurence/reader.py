@@ -30,17 +30,14 @@ class Reader:
                 line += 1
 
                 books = lines[line].split(' ')
-                stock = []
                 for book in books:
                     dict.get('books')[int(book)].get('libraries').append(i)
-                    stock.append(dict.get('books')[int(book)])
 
                 dict.get('libraries').append({
                     'id': i, 
                     'signup': int(library[1]), 
                     'scanrate': int(library[2]),
-                    'book_queue': [],
-                    'books': stock
+                    'book_queue': []
                     })
                 
                 line += 1

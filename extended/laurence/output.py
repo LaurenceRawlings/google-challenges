@@ -23,3 +23,4 @@ class Output:
                         output = output + str(book.get('id')) + '\n'
 
             f.write(output)
+            return output

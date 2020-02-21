@@ -15,7 +15,7 @@ def calc(dict):
 
     for day in range(0, dict.get('days')):
         if (len(books) > 0):
-            next_book = books.pop()
+            next_book = books.pop(0)
         else:
             return signed_up
         
@@ -34,14 +34,13 @@ def calc(dict):
             library.get('book_queue').append(next_book.get('id'))
 
         for library in signed_up:
-            stock = sorted(library.get('books'), key=lambda i:i['score'], reverse=True)
-
+            pass
             ##############################
         
         if (signup_timer <= 0):
             if (len(signup_queue) > 0):
                 if (day > 0):
-                    signed_up.append(signup_queue.pop())
+                    signed_up.append(signup_queue.pop(0))
                 signup_timer = signup_queue[0].get('signup')
         else:
             signup_timer -= 1
@@ -51,4 +50,4 @@ def calc(dict):
 for f in files:
     read = r.Reader(f'input/{f}.txt')
     out = o.Output(f'output/{f}_out.txt')
-    out(calc(read()))
+    print(out(calc(read())))

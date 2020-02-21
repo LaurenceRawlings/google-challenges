@@ -4,29 +4,41 @@ class Reader:
         self.path = path
     
     def __call__(self):
-        with open(self.path, 'r') as file:
-            lines = file.read().split('\n')
+        with open(self.path, 'r') as f:
+            lines = f.read().split('\n')
             dict = {
-                'book_scores': [],
+                'books': [],
                 'libraries': [],
                 'days': 0
             }
 
             info = lines[0].split(' ')
-            dict.update( {'book_scores' : lines[1].split(' ')} )
-            dict.update( {'days' : info[2]} )
+            books = lines[1].split(' ')
+
+            for i in range(0, len(books)):
+                dict.get('books').append({
+                    'id': i,
+                    'score': int(books[i]),
+                    'libraries': []
+                })
+
+            dict.update( {'days' : int(info[2])} )
 
             line = 2
             for i in range(0, int(info[1])):
                 library = lines[line].split(' ')
                 line += 1
-                dict.get('libraries').append( {
+                dict.get('libraries').append({
                     'id': i, 
-                    'signup': library[1], 
-                    'scanrate': library[2], 
-                    'books': lines[line].split(' '),
+                    'signup': int(library[1]), 
+                    'scanrate': int(library[2]),
                     'book_queue' : []
-                    } )
+                    })
+
+                books = lines[line].split(' ')
+                for book in books:
+                    dict.get('books')[int(book)].get('libraries').append(i)
+                
                 line += 1
 
         return dict

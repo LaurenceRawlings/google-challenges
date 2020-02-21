@@ -4,6 +4,7 @@ import output as o
 import math
 
 files = ['a_example']
+#files = ['a_example', 'b_read_on', 'c_incunabula', 'd_tough_choices', 'e_so_many_books', 'f_libraries_of_the_world']
 
 def calc(dict):
     signed_up = []

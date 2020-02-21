@@ -19,13 +19,23 @@ def calc(dict):
             return signed_up
         
         libraries = []
+        available_libraries = []
         for library in next_book.get('libraries'):
             libraries.append(dict.get('libraries')[library])
-        library = min(libraries, key=lambda i:i['signup'])
+            if (library in signed_up):
+                available_libraries.append(library)
         
-        if not (library in signed_up):
+        if not (len(available_libraries) > 0):
+            library = min(libraries, key=lambda i:i['signup'])
             signup_queue.append(library)
-        library.get('book_queue').append(next_book.get('id'))
+        else:
+            library = min(libraries, key=lambda i:i['scanrate'])
+            library.get('book_queue').append(next_book.get('id'))
+
+        for library in signed_up:
+            stock = sorted(library.get('books'), key=lambda i:i['score'], reverse=True)
+
+            ##############################
         
         if (signup_timer <= 0):
             if (len(signup_queue) > 0):

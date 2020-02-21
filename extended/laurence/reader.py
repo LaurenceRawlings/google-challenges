@@ -28,16 +28,20 @@ class Reader:
             for i in range(0, int(info[1])):
                 library = lines[line].split(' ')
                 line += 1
+
+                books = lines[line].split(' ')
+                stock = []
+                for book in books:
+                    dict.get('books')[int(book)].get('libraries').append(i)
+                    stock.append(dict.get('books')[int(book)])
+
                 dict.get('libraries').append({
                     'id': i, 
                     'signup': int(library[1]), 
                     'scanrate': int(library[2]),
-                    'book_queue' : []
+                    'book_queue': [],
+                    'books': stock
                     })
-
-                books = lines[line].split(' ')
-                for book in books:
-                    dict.get('books')[int(book)].get('libraries').append(i)
                 
                 line += 1
 

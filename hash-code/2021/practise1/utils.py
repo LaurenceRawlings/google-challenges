@@ -27,9 +27,18 @@ def read(file_name: str):
         tag_count = int(line[1])
         tags = set(line[2:])
         photos.append({
+            'id': i - 1,
             'is_horizontal': is_horizontal,
             'tag_count': tag_count,
             'tags': tags
         })
 
     return photos
+
+
+def write(file_name: str, slides: list):
+    lines = ''
+    lines += f'{str(len(slides))}\n'
+    lines += '\n'.join([' '.join([f'{photo["id"]}' for photo in slide]) + '\n' for slide in slides])
+    with open(file_name, 'w+') as file:
+        file.write(lines)
